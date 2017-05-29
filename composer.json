@@ -11,5 +11,11 @@
   ],
   "require": {
     "illuminate/support": "v5.4.19"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "Ezpage\\Dom\\": ""
+    }
   }
 }
