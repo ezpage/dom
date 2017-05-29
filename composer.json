@@ -1,0 +1,15 @@
+{
+  "name": "ezpage/dom",
+  "description": "",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Hao Nghiem",
+      "email": "qtvhao@gmail.com"
+    }
+  ],
+  "require": {
+    "illuminate/support": "v5.4.19"
+  }
+}
