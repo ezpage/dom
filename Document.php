@@ -9,10 +9,15 @@
 namespace Ezpage\Dom;
 
 
+use Ezpage\Dom\Element\Root;
 use Illuminate\Contracts\Support\Htmlable;
 
 class Document implements Htmlable
 {
+    /**
+     * @var Root
+     */
+    private $root;
 
     /**
      * Get content as a string of HTML.
@@ -22,5 +27,28 @@ class Document implements Htmlable
     public function toHtml()
     {
         return '';
+    }
+
+    public function setRootElement(Root $root)
+    {
+        $this->setRoot($root);
+    }
+
+    /**
+     * @param mixed $root
+     * @return Document
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRoot()
+    {
+        return $this->root;
     }
 }
