@@ -26,26 +26,20 @@ class Document implements Htmlable
      */
     public function toHtml()
     {
-        return '';
+        return $this->getRoot()->toHtml();
     }
-
-    public function setRootElement(Root $root)
-    {
-        $this->setRoot($root);
-    }
-
     /**
-     * @param mixed $root
+     * @param Root $root
      * @return Document
      */
-    public function setRoot($root)
+    public function setRoot(Root$root)
     {
         $this->root = $root;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return Root
      */
     public function getRoot()
     {
