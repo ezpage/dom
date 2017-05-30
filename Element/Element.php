@@ -14,9 +14,20 @@ use Illuminate\Contracts\Support\Jsonable;
 
 class Element  implements Htmlable,Jsonable
 {
-    public function make()
-    {
 
+    public function __construct()
+    {
+    }
+
+    /**
+     * @return static
+     */
+
+    public static function make()
+    {
+        $args = func_get_args();
+        
+        return new static(...$args);
     }
 
     /**
