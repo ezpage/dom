@@ -34,9 +34,11 @@ class Element  implements Htmlable,Jsonable
         $this->setTagName('div');
     }
 
-    public function append(Element $element)
+    public function append()
     {
-        $this->children->push($element);
+        foreach (func_get_args() as $element){
+            $this->children->push($element);
+        }
 
         return $this;
     }
@@ -59,7 +61,9 @@ class Element  implements Htmlable,Jsonable
      */
     public function toHtml()
     {
-        return '';
+        $tagName = $this->getTagName();
+        $children = $this->children->toHtml();
+        return "<$tagName>$children</$tagName>";
     }
 
     /**

@@ -11,5 +11,10 @@ namespace Ezpage\Dom\Element;
 
 class Head extends Element
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setTagName('head');
+    }
 
 }

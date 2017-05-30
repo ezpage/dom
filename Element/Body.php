@@ -12,4 +12,9 @@ namespace Ezpage\Dom\Element;
 class Body extends Element
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setTagName('body');
+    }
 }
