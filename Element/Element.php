@@ -14,6 +14,10 @@ use Illuminate\Contracts\Support\Jsonable;
 
 class Element  implements Htmlable,Jsonable
 {
+    public function make()
+    {
+
+    }
 
     /**
      * Get content as a string of HTML.
