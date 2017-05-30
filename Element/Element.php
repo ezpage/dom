@@ -9,14 +9,36 @@
 namespace Ezpage\Dom\Element;
 
 
+use Ezpage\Dom\Collection\Attributes;
+use Ezpage\Dom\Collection\Elements;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\Support\Jsonable;
 
 class Element  implements Htmlable,Jsonable
 {
+    /**
+     * @var Elements
+     */
+    public $children;
+    /**
+     * @var Attributes
+     */
+    public $attrs;
+    private $tagName;
 
     public function __construct()
     {
+        $this->attrs = new Attributes();
+        $this->children = new Elements();
+
+        $this->setTagName('div');
+    }
+
+    public function append(Element $element)
+    {
+        $this->children->push($element);
+
+        return $this;
     }
 
     /**
@@ -49,5 +71,23 @@ class Element  implements Htmlable,Jsonable
     public function toJson($options = 0)
     {
         return json_encode($this);
+    }
+
+    /**
+     * @param mixed $tagName
+     * @return Element
+     */
+    public function setTagName($tagName)
+    {
+        $this->tagName = $tagName;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTagName()
+    {
+        return $this->tagName;
     }
 }
