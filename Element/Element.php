@@ -19,7 +19,7 @@ class Element  implements Htmlable,Jsonable
     /**
      * @var Elements
      */
-    public $children;
+    private $children;
     /**
      * @var Attributes
      */
@@ -63,7 +63,8 @@ class Element  implements Htmlable,Jsonable
     {
         $tag = $this->getTagName();
         $attributes = strval($this->getAttributes());
-        return "<$tag $attributes></$tag>";
+        $children = $this->getChildren()->toHtml();
+        return "<$tag $attributes>$children</$tag>";
     }
 
     /**
@@ -111,5 +112,23 @@ class Element  implements Htmlable,Jsonable
     public function getAttributes()
     {
         return $this->attributes;
+    }
+
+    /**
+     * @param Elements $children
+     * @return Element
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+        return $this;
+    }
+
+    /**
+     * @return Elements
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 }

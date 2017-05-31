@@ -26,7 +26,7 @@ class Document implements Htmlable
      */
     public function toHtml()
     {
-        return $this->getRoot()->toHtml();
+        return '<!doctype html>'.$this->getRoot()->toHtml();
     }
     /**
      * @param Root $root
