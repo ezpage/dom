@@ -23,20 +23,20 @@ class Element  implements Htmlable,Jsonable
     /**
      * @var Attributes
      */
-    public $attrs;
+    private $attributes;
     private $tagName;
 
     public function __construct()
     {
-        $this->attrs = new Attributes();
+        $this->attributes = new Attributes();
         $this->children = new Elements();
 
         $this->setTagName('div');
     }
 
-    public function append()
+    public function append(...$elements)
     {
-        foreach (func_get_args() as $element){
+        foreach ($elements as $element){
             $this->children->push($element);
         }
 
@@ -61,9 +61,9 @@ class Element  implements Htmlable,Jsonable
      */
     public function toHtml()
     {
-        $tagName = $this->getTagName();
-        $children = $this->children->toHtml();
-        return "<$tagName>$children</$tagName>";
+        $tag = $this->getTagName();
+        $attributes = strval($this->getAttributes());
+        return "<$tag $attributes></$tag>";
     }
 
     /**
@@ -93,5 +93,23 @@ class Element  implements Htmlable,Jsonable
     public function getTagName()
     {
         return $this->tagName;
+    }
+
+    /**
+     * @param Attributes $attributes
+     * @return Element
+     */
+    public function setAttributes($attributes)
+    {
+        $this->attributes = $attributes;
+        return $this;
+    }
+
+    /**
+     * @return Attributes
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
     }
 }
