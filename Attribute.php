@@ -9,15 +9,29 @@
 namespace Ezpage\Dom;
 
 
+use Ezpage\Dom\Collection\Classes;
+
 class Attribute
 {
     private $name;
     private $value;
     function __toString()
     {
+        if($this->ignore()){
+            return '';
+        }
+
         $value = $this->getValue();
         $name = $this->getName();
-        return "$name='$value'";
+        $strAttribute = "$name='$value'";
+
+        return $strAttribute;
+    }
+
+    public function __construct($name = null,$value = null)
+    {
+        $this->setName($name);
+        $this->setValue($value);
     }
 
     /**
@@ -54,6 +68,16 @@ class Attribute
     public function getValue()
     {
         return $this->value;
+    }
+
+    private function ignore()
+    {
+        $value = $this->getValue();
+        if($value instanceof Classes){
+            return $value->isEmpty();
+        }
+
+        return $this->getValue() === null;
     }
 
 }
